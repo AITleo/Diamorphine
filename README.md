@@ -41,6 +41,23 @@ Compile
 make
 ```
 
+When recieveing an error like (on ubuntu):
+```
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0
+  You are using:           gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0
+  CC [M]  /home/ubuntu/Diamorphine/diamorphine.o
+gcc: error: unrecognized command-line option ‘-ftrivial-auto-var-init=zero’
+```
+Set the standard `gcc` version to 12:
+
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12
+sudo update-alternatives --config gcc
+(select gcc-12 here)
+```
+
 Load the module(as root)
 ```
 insmod diamorphine.ko
